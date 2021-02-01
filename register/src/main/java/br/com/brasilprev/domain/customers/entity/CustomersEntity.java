@@ -7,6 +7,13 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Entity of domain with field cpf single
+ * Relationship with table CPF and Address
+ *  
+ * @author jonadabe
+ * @param  methods Constructor all attribute
+ */
 public class CustomersEntity {
 	
 	@NotNull

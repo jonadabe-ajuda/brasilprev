@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import br.com.brasilprev.application.customers.command.FindCustomerCPF;
+import br.com.brasilprev.application.customers.command.RecoverCustomerCPF;
 import br.com.brasilprev.application.customers.command.SaveCustomer;
 import br.com.brasilprev.application.customers.dto.CustomerDTO;
 import br.com.brasilprev.infra.customers.RepositoryCustomersMysql;
@@ -28,7 +28,7 @@ public class SaveCustomerTest {
 		customerDTO.setZipCode("01500001");
 		saveCustomer.execute(customerDTO);
 		
-		FindCustomerCPF findCustomerCPF = new FindCustomerCPF(new RepositoryCustomersMysql("brasil-prev"));
+		RecoverCustomerCPF findCustomerCPF = new RecoverCustomerCPF(new RepositoryCustomersMysql("brasil-prev"));
 		assertEquals("Cliente um", findCustomerCPF.execute("12345678901").getName());
 		
 	}

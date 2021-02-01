@@ -6,6 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Entity of persistence
+ *  
+ * @author jonadabe
+ */
 @Entity
 public class Customers {
 	

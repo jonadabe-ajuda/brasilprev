@@ -1,5 +1,12 @@
 package br.com.brasilprev.application.customers;
-
+/**
+ * Build to create customerEntity.
+ *  
+ * @author jonadabe
+ * @param  methods withCPFName String cpf and String name
+ * @param  methods addressComplete String street, int number, String district, String city, String state, String zipCodee
+ * @return CustomerEntity
+ */
 import br.com.brasilprev.domain.customers.entity.CustomersEntity;
 import br.com.brasilprev.domain.vo.CPF;
 

@@ -5,6 +5,14 @@ import br.com.brasilprev.application.customers.dto.CustomerDTO;
 import br.com.brasilprev.domain.customers.entity.CustomersEntity;
 import br.com.brasilprev.domain.repository.RepositoryCustomer;
 
+/**
+ * Save customers
+ *  
+ * @author jonadabe
+ * @param  methods Constructor RepositoryCustomer
+ * @param  methods execute CustomerDTO
+ * @return CustomerDTO
+ */
 public class SaveCustomer {
 	
 	private final RepositoryCustomer repositoryCustomer;

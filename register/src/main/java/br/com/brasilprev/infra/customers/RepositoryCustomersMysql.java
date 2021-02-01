@@ -13,6 +13,21 @@ import br.com.brasilprev.domain.customers.entity.CustomersEntity;
 import br.com.brasilprev.domain.customers.model.Customers;
 import br.com.brasilprev.domain.repository.RepositoryCustomer;
 
+
+/**
+ * Repository customers with jpa used in mysql
+ *  
+ * @author jonadabe
+ * @param  methods Constructor RepositoryCustomer
+ * @param  methods insertCustomer CustomersEntity
+ * @param  methods updateCustomer CustomersEntity
+ * @param  methods deleteCustomer CustomersEntity
+ * @param  methods findByCustomer Strng cpf
+ * @param  methods convertToCustomerEntity Customers
+ * @param  methods convertToCustomer CustomersEntity
+ * @return findByCustomer CustomerEntity
+ * @return listaAllCustomers List<CustomersEntity>
+ */
 public class RepositoryCustomersMysql implements RepositoryCustomer {
 	
 	private final String unitPersistence;
