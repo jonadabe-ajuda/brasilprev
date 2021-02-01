@@ -48,22 +48,29 @@ public class RepositoryCustomersMysql implements RepositoryCustomer {
 	public void updateCustomer(CustomersEntity customersEntity) {
 		EntityManager em = entityManagerFactory().createEntityManager();
 		em.getTransaction().begin();
-		em.persist(convertToCustomer(customersEntity));
+		Customers customer =  bankFindByCustomer(em, customersEntity.getCpf().getNumber());
+		customer.setName(customersEntity.getName());
+		customer.setStreet(customersEntity.getAddress().getStreet());
+		customer.setNumber(customersEntity.getAddress().getNumber());
+		customer.setDistrict(customersEntity.getAddress().getDistrict());
+		customer.setCity(customersEntity.getAddress().getCity());
+		customer.setState(customersEntity.getAddress().getState());
+		customer.setZipCode(customersEntity.getAddress().getZipCode());
 		em.getTransaction().commit();		
 		
 	}
 
 	public void deleteCustomer(CustomersEntity customersEntity) {
-		//entityManager().remove(convertToCustomer(customersEntity));	
+		EntityManager em = entityManagerFactory().createEntityManager();
+		em.getTransaction().begin();
+		Customers customer =  bankFindByCustomer(em, customersEntity.getCpf().getNumber());
+		em.remove(customer);
+		em.getTransaction().commit();
 	}	
 	
 	public CustomersEntity findByCustomer(String cpf) {
 		EntityManager em = entityManagerFactory().createEntityManager();
-		String sql = "SELECT customers FROM Customers customers where customers.cpf = :cpf ";
-		Query query = em.createQuery(sql);
-		query.setParameter("cpf",cpf);
-		return convertToCustomerEntity((Customers) query.getSingleResult());
-		
+		return convertToCustomerEntity(bankFindByCustomer(em,cpf));
 	}
 
 	public List<CustomersEntity> listaAllCustomers() {
@@ -78,6 +85,14 @@ public class RepositoryCustomersMysql implements RepositoryCustomer {
 			listCustomersEntity.add(convertToCustomerEntity(customer));
 		});
 		return listCustomersEntity;
+	}
+	
+	private Customers bankFindByCustomer(EntityManager em, String cpf) {
+		String sql = "SELECT customers FROM Customers customers where customers.cpf = :cpf ";
+		Query query = em.createQuery(sql);
+		query.setParameter("cpf",cpf);
+		query.setMaxResults(1);
+		return (Customers) query.getSingleResult();		
 	}
 	
 	private CustomersEntity convertToCustomerEntity( Customers customer ) {
@@ -105,6 +120,7 @@ public class RepositoryCustomersMysql implements RepositoryCustomer {
 		customer.setZipCode(customerEntity.getAddress().getZipCode());
 		return customer;
 	}
+	
 	
 	private EntityManagerFactory entityManagerFactory() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(unitPersistence);
